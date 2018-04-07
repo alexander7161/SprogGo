@@ -13,6 +13,9 @@ public class MainActivity extends AppCompatActivity {
     Category animal = new Category(new String[] {"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
     Category garden = new Category(new String[] {"flower", "tree", "grass"});
 
+    //hello
+    //hello
+
     Button button;
 
     @Override

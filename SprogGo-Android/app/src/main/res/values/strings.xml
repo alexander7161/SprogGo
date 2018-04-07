@@ -32,5 +32,14 @@
         completions."
     </string>
     <string name="title_activity_choose_language">ChooseLanguageActivity</string>
+    <string name="main_drawer_item">Main</string>
+    <string name="my_list_drawer_item">My List</string>
+    <string name="achievements_drawer_item">Achievements</string>
+    <string name="change_language_drawer_item">Change Language</string>
+    <string name="about_drawer_item">About</string>
+    <string name="log_out_drawer_item">Log out</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

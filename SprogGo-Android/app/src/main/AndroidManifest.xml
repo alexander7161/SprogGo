@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.sproggo.sproggo.fileprovider"

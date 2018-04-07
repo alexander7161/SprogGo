@@ -2,8 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/main"/>
-            //android:icon="@drawable/ic_menu_camera"
-           // android:title="@string/import" />
+            android:id="@+id/main_drawer_item"
+            android:icon="@drawable/ic_triangle"
+            android:title="@string/main_drawer_item" />
+        <item
+            android:id="@+id/my_list_drawer_item"
+            android:icon="@drawable/ic_triangle"
+            android:title="@string/my_list_drawer_item" />
+        <item
+            android:id="@+id/achievements_drawer_item"
+            android:icon="@drawable/ic_triangle"
+            android:title="@string/achievements_drawer_item" />
+        <item
+            android:id="@+id/change_language_drawer_item"
+            android:icon="@drawable/ic_triangle"
+            android:title="@string/change_language_drawer_item" />
+        <item
+            android:id="@+id/about_drawer_item"
+            android:icon="@drawable/ic_triangle"
+            android:title="@string/about_drawer_item" />
+        <item
+            android:id="@+id/log_out_drawer_item"
+            android:icon="@drawable/ic_triangle"
+            android:title="@string/log_out_drawer_item" />
     </group>
 </menu>

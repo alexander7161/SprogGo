@@ -1,7 +1,11 @@
 package com.sproggo.sproggo;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -13,7 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements MainFragment.OnFragmentInteractionListener, MyListFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener, ChangeLanguageFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener {
     // add more categories with more words as desired
     // ideally over fifteen words in each category
     Category hackathon = new Category(new String[] {"laptop", "phone", "water", "chair", "table", "fruit"});
@@ -36,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
 
     @Override
+    public void onFragmentInteraction(Uri uri) {
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -52,31 +61,56 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
-
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
+                        // Create a new fragment and specify the fragment to show based on nav item clicked
+                        Fragment fragment = null;
+                        Class fragmentClass;
+                        switch(menuItem.getItemId()) {
+                            case R.id.main_drawer_item:
+                                fragmentClass = MainFragment.class;
+                                break;
+                            case R.id.my_list_drawer_item:
+                                fragmentClass = MyListFragment.class;
+                                break;
+                            case R.id.achievements_drawer_item:
+                                fragmentClass = AchievementsFragment.class;
+                                break;
+                            case R.id.change_language_drawer_item:
+                                fragmentClass = ChangeLanguageFragment.class;
+                                break;
+                            case R.id.about_drawer_item:
+                                fragmentClass = AboutFragment.class;
+                                break;
+                            case R.id.log_out_drawer_item:
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                            default:
+                                fragmentClass = MainFragment.class;
+                        }
+
+                        try {
+                            fragment = (Fragment) fragmentClass.newInstance();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        // Insert the fragment by replacing any existing fragment
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+                        // Highlight the selected item has been done by NavigationView
+                        menuItem.setChecked(true);
+                        // Set action bar title
+                        setTitle(menuItem.getTitle());
+                        // Close the navigation drawer
+                        mDrawerLayout.closeDrawers();
 
                         return true;
                     }
                 });
 
 
-        button = (Button)findViewById(R.id.button);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-
-                // Start NewActivity.class
-                Intent myIntent = new Intent(MainActivity.this,
-                        DescribeActivity.class);
-                startActivity(myIntent);
-            }
-        });
     }
 
     @Override

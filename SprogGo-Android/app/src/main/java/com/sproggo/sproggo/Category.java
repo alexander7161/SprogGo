@@ -6,6 +6,7 @@ import java.util.Collections;
 public class Category {
     // the array of words to take photos of
     private ArrayList<String> words = new ArrayList<>();
+    private boolean isCurrent = false;
 
     // the number of words which is assigned depending on the level
     // 5, 10 or 15 corresponding to easy, medium or hard
@@ -31,6 +32,11 @@ public class Category {
         }
 
         return testWords;
+    }
+
+    // setter
+    public void makeCurrent() {
+        isCurrent = true;
     }
 
 }

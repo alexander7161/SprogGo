@@ -1,5 +1,6 @@
 package com.sproggo.sproggo;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -57,6 +58,19 @@ public class MainActivity extends AppCompatActivity
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
+        Fragment fragment = null;
+        Class fragmentClass;
+        fragmentClass = MainFragment.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -84,6 +98,7 @@ public class MainActivity extends AppCompatActivity
                                 fragmentClass = AboutFragment.class;
                                 break;
                             case R.id.log_out_drawer_item:
+                                finish();
                                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                             default:
                                 fragmentClass = MainFragment.class;

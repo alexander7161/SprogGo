@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     // add more categories with more words as desired
@@ -19,8 +20,16 @@ public class MainActivity extends AppCompatActivity {
     Category animal = new Category(new String[] {"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
     Category garden = new Category(new String[] {"flower", "tree", "grass"});
 
-    //hello
-    //hello
+    // holds all of the players and their details
+    PlayerList playerList = new PlayerList();
+
+    //when click create account button, run this code
+    // if (repeatUsername.equals(username) && repeatPassword.equals(password)) {
+    //      players.createAccount(username, password, email);
+    // }
+
+    //when click login button, run this code
+    // playerList.login(username, password);
 
     Button button;
     private DrawerLayout mDrawerLayout;

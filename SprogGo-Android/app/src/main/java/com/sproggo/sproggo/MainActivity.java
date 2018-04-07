@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity
     Category animal = new Category(new String[] {"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
     Category garden = new Category(new String[] {"flower", "tree", "grass"});
 
-
     // holds all of the players and their details
     PlayerList playerList = new PlayerList();
 
@@ -36,6 +35,9 @@ public class MainActivity extends AppCompatActivity
 
     //when click login button, run this code
     // playerList.login(username, password);
+
+    //when click category hackathon button, run this code (for all 3 categories)
+    // hackathon.makeCurrent();
 
     Button button;
     private DrawerLayout mDrawerLayout;

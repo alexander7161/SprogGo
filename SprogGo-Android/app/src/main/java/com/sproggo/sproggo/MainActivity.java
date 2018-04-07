@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements MainFragment.OnFragmentInteractionListener, MyListFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener, ChangeLanguageFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener {
@@ -25,8 +25,17 @@ public class MainActivity extends AppCompatActivity
     Category animal = new Category(new String[] {"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
     Category garden = new Category(new String[] {"flower", "tree", "grass"});
 
-    //hello
-    //hello
+
+    // holds all of the players and their details
+    PlayerList playerList = new PlayerList();
+
+    //when click create account button, run this code
+    // if (repeatUsername.equals(username) && repeatPassword.equals(password)) {
+    //      players.createAccount(username, password, email);
+    // }
+
+    //when click login button, run this code
+    // playerList.login(username, password);
 
     Button button;
     private DrawerLayout mDrawerLayout;

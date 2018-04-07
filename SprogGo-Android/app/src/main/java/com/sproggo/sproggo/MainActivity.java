@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    Category hackathon = new Category(new String[] {"Laptop", "Phone", "Water", "Chair", "Table", "Fruit"});
+
 
     Button button;
 

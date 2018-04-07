@@ -21,20 +21,14 @@ public class MainActivity extends AppCompatActivity
         implements MainFragment.OnFragmentInteractionListener, MyListFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener, ChangeLanguageFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener {
     // add more categories with more words as desired
     // ideally over fifteen words in each category
-    Category hackathon = new Category(new String[] {"laptop", "phone", "water", "chair", "table", "fruit"});
-    Category animal = new Category(new String[] {"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
-    Category garden = new Category(new String[] {"flower", "tree", "grass"});
+    public static Category hackathon = new Category(new String[] {"laptop", "phone", "water", "chair", "table", "fruit"});
+    public static Category animal = new Category(new String[] {"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
+    public static Category garden = new Category(new String[] {"flower", "tree", "grass"});
 
     // holds all of the players and their details
-    PlayerList playerList = new PlayerList();
+    public static PlayerList playerList = new PlayerList();
 
-    //when click create account button, run this code
-    // if (repeatUsername.equals(username) && repeatPassword.equals(password)) {
-    //      players.createAccount(username, password, email);
-    // }
 
-    //when click login button, run this code
-    // playerList.login(username, password);
 
     //when click category hackathon button, run this code (for all 3 categories)
     // hackathon.makeCurrent();

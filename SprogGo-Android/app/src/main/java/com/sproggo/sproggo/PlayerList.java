@@ -1,5 +1,6 @@
 package com.sproggo.sproggo;
 
+import android.widget.EditText;
 import java.util.ArrayList;
 
 public class PlayerList {
@@ -7,12 +8,12 @@ public class PlayerList {
     private ArrayList<Player> playerList = new ArrayList<>();
 
     // adds a player
-    public void createAccount(String username, String password, String email) {
+    public void createAccount(EditText username, EditText password, EditText email) {
         playerList.add(new Player(username, password, email));
     }
 
     // logs in
-    public boolean login(String username, String password) {
+    public boolean login(EditText username, EditText password) {
         // iterates through each player and checks the username and password match
         for (Player player : playerList) {
             if (player.getUsername().equals(username) && player.getPassword().equals(password)) {

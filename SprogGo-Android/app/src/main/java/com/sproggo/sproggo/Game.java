@@ -51,7 +51,8 @@ public class Game {
     }
 
     public static void addScore(List<String> newWords, String word) {
-        for(String newWord : newWords) {
+        List<String> list = newWords.subList(1, 6);
+        for(String newWord : list) {
             if(newWord.toLowerCase().contains(word.toLowerCase())) {
                 score++;
                 return;

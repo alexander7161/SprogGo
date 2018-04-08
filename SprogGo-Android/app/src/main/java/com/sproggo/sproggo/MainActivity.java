@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity
 
     private DrawerLayout mDrawerLayout;
 
+    private TextView score;
+
     @Override
     public void onFragmentInteraction(Uri uri) {
     }
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        score = (TextView) findViewById(R.id.right_toolbar_text).findViewById(R.id.scoreText);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -125,6 +129,16 @@ public class MainActivity extends AppCompatActivity
                         return true;
                     }
                 });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        score = (TextView) findViewById(R.id.right_toolbar_text).findViewById(R.id.scoreText);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
+        int scoreInt = pref.getInt("score", 0);
+        score.setText(Integer.toString(scoreInt));
     }
 
     @Override

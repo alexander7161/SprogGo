@@ -18,8 +18,6 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sproggo.sproggo.Game.setUpGame;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +30,8 @@ import static com.sproggo.sproggo.Game.setUpGame;
 public class MainFragment extends android.support.v4.app.Fragment {
 
     private int numOfWords = 5;
+
+    private Game game;
 
 
 
@@ -92,8 +92,24 @@ public class MainFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 SharedPreferences pref = getActivity().getSharedPreferences("sproggo", 0);
                 Player currentPlayer = PlayerList.getUser(pref.getString("currentUser", null));
-                Game.setUpGame(spinnerArray.get(sItems.getSelectedItemPosition()), numOfWords);
+                game = new Game(spinnerArray.get(sItems.getSelectedItemPosition()), numOfWords);
+                String word = game.nextWord();
+                if (word==null) {
+                    try {
+                        int score = pref.getInt("score", 0);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putInt("score", score + game.getScore());
+                        editor.commit();
+                    } catch (Exception e) {
+
+                    }
+                    Intent intent = new Intent(getActivity(), GameResultsActivity.class);
+                    intent.putExtra("score", game.getScore());
+                    intent.putExtra("map", game.getWordsTested());
+                    startActivity(intent);
+                }
                 Intent intent = new Intent(getActivity(), DescribeActivity.class);
+                intent.putExtra("word", word);
                 MainFragment.this.startActivity(intent);
             }
         });
@@ -159,5 +175,10 @@ public class MainFragment extends android.support.v4.app.Fragment {
                     numOfWords = 15;
                     break;
         }
+    }
+
+    public void addScore(List<String> newWords, String word) {
+        game.addScore(newWords, word);
+    }
     }
 }

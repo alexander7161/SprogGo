@@ -98,17 +98,9 @@ public class DescribeActivity extends AppCompatActivity {
         mButtonSelectImage = (Button)findViewById(R.id.buttonSelectImage);
         mEditText = (EditText)findViewById(R.id.editTextResult);
         TextView currentWordText = (TextView) findViewById(R.id.currentWord);
-        this.word = Game.nextWord();
+        this.word = getIntent().getStringExtra("word");
         if(word == null) {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
-            try {
-                int score = pref.getInt("score", 0);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("score", score + Game.getScore());
-                editor.commit();
-            } catch (Exception e) {
 
-            }
             Intent intent = new Intent(this, GameResultsActivity.class);
             startActivity(intent);
         }
@@ -235,28 +227,8 @@ public class DescribeActivity extends AppCompatActivity {
             } else {
                 Gson gson = new Gson();
                 AnalysisResult result = gson.fromJson(data, AnalysisResult.class);
-
-                Game.addScore(result.description.tags, word);
-
-                mEditText.append("Image format: " + result.metadata.format + "\n");
-                mEditText.append("Image width: " + result.metadata.width + ", height:" + result.metadata.height + "\n");
-                mEditText.append("\n");
-
-                for (Caption caption: result.description.captions) {
-                    mEditText.append("Caption: " + caption.text + ", confidence: " + caption.confidence + "\n");
-                }
-                mEditText.append("\n");
-
-                for (String tag: result.description.tags) {
-                    mEditText.append("Tag: " + tag + "\n");
-                }
-                mEditText.append("\n");
-
-                mEditText.append("\n--- Raw Data ---\n\n");
-                mEditText.append(data);
-                mEditText.setSelection(0);
+                getParent().addScore(result.description.tags, word);
             }
-            Toast.makeText(DescribeActivity.this, word, Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(DescribeActivity.this, DescribeActivity.class);
             startActivity(intent);

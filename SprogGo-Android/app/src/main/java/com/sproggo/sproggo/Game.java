@@ -9,21 +9,21 @@ import java.util.List;
 import java.util.Random;
 
 public class Game {
-    private static Random randomGenerator;
-    private static List<String> wordsToTest;
-    private static int numOfWordsToTest;
-    private static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
-    private static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
-    private static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
-    private static int score;
-    private static int photosTaken;
-    private static int correctPhotosTaken;
-    private static TreeMap<String, Boolean> wordsTested;
+    private Random randomGenerator;
+    private List<String> wordsToTest;
+    private int numOfWordsToTest;
+    private List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
+    private List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
+    private List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
+    private int score;
+    private int photosTaken;
+    private int correctPhotosTaken;
+    private TreeMap<String, Boolean> wordsTested;
 
     private Game() {
     }
 
-    public static void setUpGame(String categoryName, int numOfWords) {
+    public Game(String categoryName, int numOfWords) {
         score = 0;
         photosTaken = 0;
         correctPhotosTaken = 0;
@@ -44,7 +44,7 @@ public class Game {
         numOfWordsToTest = numOfWords;
     }
 
-    public static String nextWord() {
+    public String nextWord() {
         if(numOfWordsToTest == 0) {
             return null;
         } else {
@@ -57,39 +57,38 @@ public class Game {
         }
     }
 
-    public static void addScore(List<String> newWords, String word) {
+    public void addScore(List<String> newWords, String word) {
         boolean isCorrect = false;
+        boolean done = false;
         List<String> list = newWords.subList(1, 6);
         for(String newWord : list) {
-            if(newWord.toLowerCase().contains(word.toLowerCase())) {
+            if(newWord.toLowerCase().contains(word.toLowerCase()) && !done) {
                 score++;
                 photosTaken++;
                 correctPhotosTaken++;
                 isCorrect = true;
                 wordsTested.put(word, true);
-                return;
+                done = true;
+            } else {
+                photosTaken++;
+                wordsTested.put(word, false);
             }
         }
-        if(!isCorrect) {
-            photosTaken++;
-            wordsTested.put(word, false);
-        }
-
     }
 
-    public static int getScore() {
+    public int getScore() {
         return score;
     }
 
-    public static int getCorrectPhotosTaken() {
+    public int getCorrectPhotosTaken() {
         return correctPhotosTaken;
     }
 
-    public static int getPhotosTaken() {
+    public int getPhotosTaken() {
         return photosTaken;
     }
 
-    public static TreeMap<String, Boolean> getWordsTested() {
+    public TreeMap<String, Boolean> getWordsTested() {
         return wordsTested;
     }
 }

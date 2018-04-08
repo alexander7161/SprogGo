@@ -27,4 +27,13 @@ public class PlayerList {
         // false otherwise
         return false;
     }
+
+    public static Player getUser(String user) {
+        for (Player player : playerList) {
+            if (player.getUsername().equals(user)) {
+                return player;
+            }
+        }
+        return null;
+    }
 }

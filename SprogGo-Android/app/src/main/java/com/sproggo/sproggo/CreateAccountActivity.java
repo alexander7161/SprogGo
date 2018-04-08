@@ -24,7 +24,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (email.getText().toString().equals(repeatEmail.getText().toString()) && password.getText().toString().equals(repeatEmail.getText().toString()) ) {
+                if (email.getText().toString().equals(repeatEmail.getText().toString()) && password.getText().toString().equals(repeatPassword.getText().toString())) {
                     PlayerList.createAccount(username.getText().toString(), password.getText().toString(), email.getText().toString());
                     SharedPreferences pref = getSharedPreferences("sproggo", 0);
                     SharedPreferences.Editor editor = pref.edit();

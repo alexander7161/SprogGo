@@ -34,6 +34,7 @@
         <activity android:name=".SelectImageActivity" />
         <activity
             android:name=".LoginActivity"
+            android:theme="@android:style/Theme.Holo.Dialog"
             android:label="@string/title_activity_login" />
         <activity android:name=".CreateAccountActivity" />
         <activity

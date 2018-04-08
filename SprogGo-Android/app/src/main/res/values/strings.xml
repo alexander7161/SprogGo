@@ -22,8 +22,8 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in">Login or create account</string>
+    <string name="action_sign_in_short">Login</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -38,6 +38,10 @@
     <string name="change_language_drawer_item">Change Language</string>
     <string name="about_drawer_item">About</string>
     <string name="log_out_drawer_item">Log out</string>
+
+    <string name="sproggo_description">A fun game to expand your vocabulary \nin a foreign language!</string>
+    <string name="sproggo_name">SprogGo</string>
+    <string name="action_create_account_short">Create account</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

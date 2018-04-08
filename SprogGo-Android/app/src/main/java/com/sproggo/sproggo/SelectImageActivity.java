@@ -63,6 +63,7 @@ public class SelectImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_image);
+        takePhoto(getCurrentFocus());
     }
 
     // Save the activity state when it's going to stop.

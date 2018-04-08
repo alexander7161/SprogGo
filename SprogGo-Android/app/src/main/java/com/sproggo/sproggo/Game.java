@@ -12,7 +12,7 @@ public class Game {
     private static Random randomGenerator;
     private static List<String> wordsToTest;
     private static int numOfWordsToTest;
-     private static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
+    private static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
     private static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
     private static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
     private static int score;

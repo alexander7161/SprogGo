@@ -87,14 +87,14 @@
             android:layout_marginBottom="96dp"
             android:text="Set..." />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp"
-            android:text="SprogGo" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:text="SprogGo!" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -112,7 +112,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView4"
         android:layout_centerHorizontal="true"
-        android:text="SprogGo" />
+        android:text="SprogGo!"
+        android:textAllCaps="false" />
 
 
 </RelativeLayout>

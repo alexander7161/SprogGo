@@ -25,19 +25,23 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="234dp" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Number of Words:" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Number of Words:" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@+id/fiveRadio"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="161dp"
+        android:checkedButton="@+id/tenRadio"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <RadioButton
             android:id="@+id/fiveRadio"
@@ -45,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="225dp"
             android:text="5 Words" />
 
         <RadioButton
@@ -54,7 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="185dp"
             android:checked="true"
             android:text="10 Words" />
 

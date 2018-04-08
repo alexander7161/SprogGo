@@ -23,7 +23,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (repeatEmail.equals(email) && repeatPassword.equals(password)) {
-                    PlayerList.createAccount(username, password, email);
+                    PlayerList.createAccount(username.getText().toString(), password.getText().toString(), email.getText().toString());
                 }
             }
         });

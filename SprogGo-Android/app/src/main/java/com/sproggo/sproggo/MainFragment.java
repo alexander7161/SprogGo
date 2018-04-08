@@ -8,7 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -20,6 +25,21 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class MainFragment extends android.support.v4.app.Fragment {
+
+    static ArrayList<Category> categories = new ArrayList<>();
+    static {
+
+        // add more categories with more words as desired
+        // ideally over fifteen words in each category
+        Category hackathon = new Category(new String[]{"laptop", "phone", "water", "chair", "table", "fruit"});
+        Category animal = new Category(new String[]{"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
+        Category garden = new Category(new String[]{"flower", "tree", "grass"});
+        categories.add(hackathon);
+        categories.add(animal);
+        categories.add(garden);
+    }
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -73,6 +93,19 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 MainFragment.this.startActivity(intent);
             }
         });
+
+        // you need to have a list of data that you want the spinner to display
+        List<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("hackathon");
+        spinnerArray.add("animal");
+        spinnerArray.add("garden");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner) view.findViewById(R.id.spinner);
+        sItems.setAdapter(adapter);
+
         return view;
     }
 

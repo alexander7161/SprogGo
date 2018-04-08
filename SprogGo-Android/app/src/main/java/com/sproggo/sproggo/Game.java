@@ -15,7 +15,7 @@ public class Game {
     private static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
     private static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
     private static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
-    private static List<String> hackathon = new LinkedList<String>(Arrays.asList("baerbar", "telefon", "vand", "stol", "bord", "frugt"))
+    private static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baerbar", "telefon", "vand", "stol", "bord", "frugt"))
     private static int score;
     private static int photosTaken;
     private static int correctPhotosTaken;

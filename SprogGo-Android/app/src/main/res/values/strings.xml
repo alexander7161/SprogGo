@@ -32,7 +32,7 @@
         completions."
     </string>
     <string name="title_activity_choose_language">ChooseLanguageActivity</string>
-    <string name="main_drawer_item">Main</string>
+    <string name="main_drawer_item">Start Learning!</string>
     <string name="my_list_drawer_item">My List</string>
     <string name="achievements_drawer_item">Achievements</string>
     <string name="change_language_drawer_item">Change Language</string>

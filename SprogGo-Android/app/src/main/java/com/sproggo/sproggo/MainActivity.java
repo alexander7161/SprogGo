@@ -15,12 +15,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        setTitle("Start Learning!");
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -117,7 +122,6 @@ public class MainActivity extends AppCompatActivity
                         setTitle(menuItem.getTitle());
                         // Close the navigation drawer
                         mDrawerLayout.closeDrawers();
-
                         return true;
                     }
                 });
@@ -128,6 +132,13 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                int score = 0;
+                try {
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
+                    score = pref.getInt("score", 0);
+                } catch(Exception e) {
+
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

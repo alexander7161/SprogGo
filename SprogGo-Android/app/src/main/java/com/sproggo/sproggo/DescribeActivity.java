@@ -33,6 +33,7 @@
 package com.sproggo.sproggo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -99,7 +100,13 @@ public class DescribeActivity extends AppCompatActivity {
         TextView currentWordText = (TextView) findViewById(R.id.currentWord);
         this.word = Game.nextWord();
         if(word == null) {
-            startActivity(new Intent(this, MainActivity.class));
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
+            int score = pref.getInt("score", 0);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt("score", score + Game.getScore());
+            editor.commit();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
         currentWordText.setText(word);
     }
@@ -224,6 +231,8 @@ public class DescribeActivity extends AppCompatActivity {
             } else {
                 Gson gson = new Gson();
                 AnalysisResult result = gson.fromJson(data, AnalysisResult.class);
+
+                Game.addScore(result.description.tags, word);
 
                 mEditText.append("Image format: " + result.metadata.format + "\n");
                 mEditText.append("Image width: " + result.metadata.width + ", height:" + result.metadata.height + "\n");

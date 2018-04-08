@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sproggo.sproggo.Game.setUpGame;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +31,7 @@ import java.util.List;
  */
 public class MainFragment extends android.support.v4.app.Fragment {
 
-    private int numOfWords;
+    private int numOfWords = 5;
 
     static ArrayList<Category> categories = new ArrayList<>();
     static {
@@ -123,9 +125,8 @@ public class MainFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 SharedPreferences pref = getActivity().getSharedPreferences("sproggo", 0);
                 Player currentPlayer = PlayerList.getUser(pref.getString("currentUser", null));
-                Game game = new Game(categories.get(sItems.getSelectedItemPosition()).getTestWords(), numOfWords, currentPlayer);
+                Game.setUpGame(spinnerArray.get(sItems.getSelectedItemPosition()), numOfWords);
                 Intent intent = new Intent(getActivity(), DescribeActivity.class);
-                intent.putExtra("game", game);
                 MainFragment.this.startActivity(intent);
             }
         });

@@ -41,13 +41,14 @@
 
         <Button
             android:id="@+id/button_select_a_photo_in_album"
+            style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/select_image_in_album"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:onClick="selectImageInAlbum"
-            style="@style/ButtonStyle" />
+            android:text="@string/select_image_in_album"
+            android:visibility="visible" />
     </RelativeLayout>
 
 </LinearLayout>

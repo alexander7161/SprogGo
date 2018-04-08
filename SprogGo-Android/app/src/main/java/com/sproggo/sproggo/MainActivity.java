@@ -27,8 +27,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements MainFragment.OnFragmentInteractionListener, MyListFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener, ChangeLanguageFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener {
-    //when click category hackathon button, run this code (for all 3 categories)
-    // hackathon.makeCurrent();
 
     private DrawerLayout mDrawerLayout;
 

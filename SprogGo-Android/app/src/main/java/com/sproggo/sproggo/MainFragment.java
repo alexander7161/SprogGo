@@ -41,9 +41,12 @@ public class MainFragment extends android.support.v4.app.Fragment {
         Category hackathon = new Category(new String[]{"laptop", "phone", "water", "chair", "table", "fruit"});
         Category animal = new Category(new String[]{"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
         Category garden = new Category(new String[]{"flower", "tree", "grass"});
+        Category danishHackathon = new Category(new String[] {"baerbar" + "telefon" + "vand" + "stol" + "bord" + "frugt"});
+
         categories.add(hackathon);
         categories.add(animal);
         categories.add(garden);
+        categories.add(danishHackathon);
     }
 
 

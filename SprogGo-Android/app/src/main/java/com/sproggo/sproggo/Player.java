@@ -1,17 +1,15 @@
 package com.sproggo.sproggo;
 
-import android.widget.EditText;
-
 public class Player {
-    private EditText username;
-    private EditText password;
-    private EditText email;
+    private String username;
+    private String password;
+    private String email;
 
     public int score;
     public int numPhotosTaken;
 
     // constructor
-    public Player(EditText username, EditText password, EditText email) {
+    public Player(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -22,17 +20,17 @@ public class Player {
     }
 
     // username getter
-    public EditText getUsername() {
+    public String getUsername() {
         return username;
     }
 
     // password getter
-    public EditText getPassword() {
+    public String getPassword() {
         return password;
     }
 
     // email getter
-    public EditText getEmail() {
+    public String getEmail() {
         return email;
     }
 }

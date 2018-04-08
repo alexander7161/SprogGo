@@ -30,4 +30,12 @@ public class Welcome extends AppCompatActivity {
             }
         });
     }
+
+    public void logIn(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    public void SignUp(View view) {
+        startActivity(new Intent(this, CreateAccountActivity.class));
+    }
 }

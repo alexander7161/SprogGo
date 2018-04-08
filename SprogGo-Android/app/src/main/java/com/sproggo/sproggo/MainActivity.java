@@ -2,9 +2,11 @@ package com.sproggo.sproggo;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -15,26 +17,19 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements MainFragment.OnFragmentInteractionListener, MyListFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener, ChangeLanguageFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener {
-    // add more categories with more words as desired
-    // ideally over fifteen words in each category
-    public static Category hackathon = new Category(new String[] {"laptop", "phone", "water", "chair", "table", "fruit"});
-    public static Category animal = new Category(new String[] {"dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"});
-    public static Category garden = new Category(new String[] {"flower", "tree", "grass"});
-
-    // holds all of the players and their details
-    public static PlayerList playerList = new PlayerList();
-
-
-
     //when click category hackathon button, run this code (for all 3 categories)
     // hackathon.makeCurrent();
 
-    Button button;
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -95,6 +90,12 @@ public class MainActivity extends AppCompatActivity
                                 break;
                             case R.id.log_out_drawer_item:
                                 finish();
+                                SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
+
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putBoolean("isLoggedIn", false);
+                                editor.commit();
+                                Toast.makeText(MainActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                             default:
                                 fragmentClass = MainFragment.class;
@@ -120,8 +121,6 @@ public class MainActivity extends AppCompatActivity
                         return true;
                     }
                 });
-
-
     }
 
     @Override

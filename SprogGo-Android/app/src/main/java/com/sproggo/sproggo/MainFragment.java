@@ -67,6 +67,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
         spinnerArray.add("hackathon");
         spinnerArray.add("animal");
         spinnerArray.add("garden");
+        spinnerArray.add("Danish Hackathon");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, spinnerArray);
 

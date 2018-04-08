@@ -105,6 +105,7 @@ public class DescribeActivity extends AppCompatActivity {
                 int score = pref.getInt("score", 0);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("score", score + Game.getScore());
+                editor.putInt("scoreNew", Game.getScore());
                 editor.commit();
             } catch (Exception e) {
 

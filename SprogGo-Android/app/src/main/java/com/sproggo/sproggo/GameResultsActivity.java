@@ -29,8 +29,10 @@ public class GameResultsActivity extends AppCompatActivity {
         listAdapter = new MyAdapter(this,new ArrayList<String>(Game.getWordsTested().keySet()));
         listView.setAdapter(listAdapter);
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
+        int scoreInt = pref.getInt("scoreNew", 0);
         TextView score = (TextView) findViewById(R.id.score_single);
-        score.setText(Integer.toString(Game.getScore()));
+        score.setText(Integer.toString(scoreInt));
 
         TextView correctWords = (TextView) findViewById(R.id.correct_images);
         correctWords.setText(Integer.toString(Game.getCorrectPhotosTaken()));

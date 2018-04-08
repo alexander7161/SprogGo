@@ -16,7 +16,7 @@ public class PlayerList {
 
     // logs in
     public static boolean login(String username, String password) {
-        createAccount("TextView", "TextView", "TextView");
+        createAccount("copenhacks", "password", "cph@gmail.com");
         // iterates through each player and checks the username and password match
         for (Player player : playerList) {
             if (player.getUsername().equals(username) && player.getPassword().equals(password)) {

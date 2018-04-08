@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class PlayerList {
     // creates an array to store every player in
-    private ArrayList<Player> playerList = new ArrayList<>();
+    private static ArrayList<Player> playerList = new ArrayList<>();
 
     // adds a player
-    public void createAccount(EditText username, EditText password, EditText email) {
+    public static void createAccount(EditText username, EditText password, EditText email) {
         playerList.add(new Player(username, password, email));
     }
 
     // logs in
-    public boolean login(EditText username, EditText password) {
+    public static boolean login(EditText username, EditText password) {
         // iterates through each player and checks the username and password match
         for (Player player : playerList) {
             if (player.getUsername().equals(username) && player.getPassword().equals(password)) {

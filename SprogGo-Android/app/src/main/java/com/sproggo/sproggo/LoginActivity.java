@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(MainActivity.playerList.login(username, password)) {
+                if(PlayerList.login(username, password)) {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
                     SharedPreferences.Editor editor = pref.edit();

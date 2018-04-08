@@ -1,13 +1,38 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sproggo.sproggo.AboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ScrollView
+        android:layout_width="317dp"
+        android:layout_height="509dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="none"
+            android:singleLine="false"
+            android:text="Gameplay:\n\nWelcome to SprogGo! We're here to help make language learning even MORE fun than it already is.\n\nSelect a category from the given list, and pick how many words you'd like to find. We'd recommend:\n5 if you don't have much time\n10 if you're feeling in the middle\n15 if you have plenty of time spare\nThen press SPROGGO! and you're ready to play!\n\nWe will give you an object to find from the chosen category, and your task is to find this object and take a photo of it. When you've submitted a photo, it’s time to move on to the next object! When you have completed all the objects (feel free to skip ones you cannot find - but be aware you will not get any points for them!) then we will show you how you did in that round. You can also add words to your vocab list to look at later – you’ll find the list in the main menu.\n\nHistory:\n\nThis app was created at CopenHacks 2018 by Sonia, Kim, Alex and Sara, using the Microsoft Computer Vision API. The inspiration for the name comes from the Danish word ‘sprog’, meaning ‘language’, and the English word ‘go’!"
+            tools:editable="false"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="92dp" />
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

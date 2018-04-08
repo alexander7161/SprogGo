@@ -1,5 +1,6 @@
 package com.sproggo.sproggo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,14 +19,14 @@ public class Welcome extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // do this
+                startActivity(new Intent(Welcome.this, LoginActivity.class));
             }
         });
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // do this
+                startActivity(new Intent(Welcome.this, CreateAccountActivity.class));
             }
         });
     }

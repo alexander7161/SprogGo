@@ -49,13 +49,13 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPersonName|textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/repeatPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/repeatPassword"
         android:layout_width="wrap_content"
         android:layout_height="47dp"
         android:layout_marginBottom="8dp"
@@ -65,13 +65,13 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="confirm password"
-        android:inputType="textPersonName|textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/repeatPassword"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/repeatPassword"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -81,7 +81,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="email"
-        android:inputType="textEmailAddress|textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/repeatEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -97,7 +97,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="confirm email"
-        android:inputType="textEmailAddress|textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/createAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

@@ -66,14 +66,15 @@ public class Game {
                 photosTaken++;
                 correctPhotosTaken++;
                 isCorrect = true;
-                wordsTested.put(word, isCorrect);
+                wordsTested.put(word, true);
                 return;
             }
         }
         if(!isCorrect) {
             photosTaken++;
+            wordsTested.put(word, false);
         }
-        wordsTested.put(word, isCorrect);
+
     }
 
     public static int getScore() {

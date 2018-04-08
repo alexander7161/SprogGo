@@ -139,7 +139,7 @@ public class DescribeActivity extends AppCompatActivity {
 
     public void doDescribe() {
         mButtonSelectImage.setEnabled(false);
-        mEditText.setText("Describing...");
+        mEditText.setText("Analysying...");
 
         try {
             new doRequest().execute();

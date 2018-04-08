@@ -2,14 +2,17 @@ package com.sproggo.sproggo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -25,6 +28,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class MainFragment extends android.support.v4.app.Fragment {
+
+    private int numOfWords;
 
     static ArrayList<Category> categories = new ArrayList<>();
     static {
@@ -87,15 +92,9 @@ public class MainFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {// Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         final Button button = (Button) view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DescribeActivity.class);
-                MainFragment.this.startActivity(intent);
-            }
-        });
 
         // you need to have a list of data that you want the spinner to display
-        List<String> spinnerArray =  new ArrayList<String>();
+        final List<String> spinnerArray =  new ArrayList<String>();
         spinnerArray.add("hackathon");
         spinnerArray.add("animal");
         spinnerArray.add("garden");
@@ -103,8 +102,33 @@ public class MainFragment extends android.support.v4.app.Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner sItems = (Spinner) view.findViewById(R.id.spinner);
+        final Spinner sItems = (Spinner) view.findViewById(R.id.spinner);
         sItems.setAdapter(adapter);
+
+        RadioButton fiveRadio = (RadioButton) view.findViewById(R.id.fiveRadio);
+        RadioButton tenRadio = (RadioButton) view.findViewById(R.id.tenRadio);
+        RadioButton fithteenRadio = (RadioButton) view.findViewById(R.id.fithteenRadio);
+
+        View.OnClickListener first_radio_listener = new View.OnClickListener(){
+            public void onClick(View v) {
+                onRadioButtonClicked(v);
+            }
+        };
+
+        fiveRadio.setOnClickListener(first_radio_listener);
+        tenRadio.setOnClickListener(first_radio_listener);
+        fithteenRadio.setOnClickListener(first_radio_listener);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SharedPreferences pref = getActivity().getSharedPreferences("sproggo", 0);
+                Player currentPlayer = PlayerList.getUser(pref.getString("currentUser", null));
+                Game game = new Game(categories.get(sItems.getSelectedItemPosition()).getTestWords(), numOfWords, currentPlayer);
+                Intent intent = new Intent(getActivity(), DescribeActivity.class);
+                intent.putExtra("game", game);
+                MainFragment.this.startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -146,5 +170,26 @@ public class MainFragment extends android.support.v4.app.Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.fiveRadio:
+                if (checked)
+                    numOfWords = 5;
+                    break;
+            case R.id.tenRadio:
+                if (checked)
+                    numOfWords = 10;
+                    break;
+            case R.id.fithteenRadio:
+                if (checked)
+                    numOfWords = 15;
+                    break;
+        }
     }
 }

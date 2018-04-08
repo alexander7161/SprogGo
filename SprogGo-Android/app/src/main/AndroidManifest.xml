@@ -28,7 +28,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".MainActivity"> </activity>
+        <activity android:name=".MainActivity">
+        </activity>
         <activity android:name=".DescribeActivity" />
         <activity android:name=".SelectImageActivity" />
         <activity

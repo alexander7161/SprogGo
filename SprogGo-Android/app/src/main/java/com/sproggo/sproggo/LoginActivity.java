@@ -1,5 +1,8 @@
 package com.sproggo.sproggo;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -19,7 +22,14 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.playerList.login(username, password);
+                if(PlayerList.login(username, password)) {
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.commit();
+                }
+
             }
         });
     }

@@ -25,13 +25,13 @@
         android:layout_height="162dp"
         android:text="Button" />
 
-    <TextView
+    <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
-    <TextView
+    <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

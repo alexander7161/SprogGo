@@ -8,8 +8,6 @@ import android.widget.EditText;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

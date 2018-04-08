@@ -28,13 +28,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"> </activity>
         <activity android:name=".DescribeActivity" />
         <activity android:name=".SelectImageActivity" />
         <activity
@@ -45,7 +39,13 @@
             android:name=".ChooseLanguageActivity"
             android:label="@string/title_activity_choose_language"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Welcome"></activity>
+        <activity android:name=".Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

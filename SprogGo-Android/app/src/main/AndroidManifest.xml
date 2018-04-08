@@ -46,7 +46,13 @@
             android:name=".ChooseLanguageActivity"
             android:label="@string/title_activity_choose_language"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Welcome"></activity>
+        <activity android:name=".Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

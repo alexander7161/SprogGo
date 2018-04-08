@@ -45,6 +45,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.microsoft.projectoxford.vision.VisionServiceClient;
@@ -55,6 +57,8 @@ import com.microsoft.projectoxford.vision.contract.Face;
 import com.microsoft.projectoxford.vision.contract.Tag;
 import com.microsoft.projectoxford.vision.contract.Caption;
 import com.microsoft.projectoxford.vision.rest.VisionServiceException;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -79,6 +83,8 @@ public class DescribeActivity extends AppCompatActivity {
 
     private VisionServiceClient client;
 
+    private String word;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +96,12 @@ public class DescribeActivity extends AppCompatActivity {
 
         mButtonSelectImage = (Button)findViewById(R.id.buttonSelectImage);
         mEditText = (EditText)findViewById(R.id.editTextResult);
+        TextView currentWordText = (TextView) findViewById(R.id.currentWord);
+        this.word = Game.nextWord();
+        if(word == null) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        currentWordText.setText(word);
     }
 
     @Override
@@ -231,6 +243,10 @@ public class DescribeActivity extends AppCompatActivity {
                 mEditText.append(data);
                 mEditText.setSelection(0);
             }
+            Toast.makeText(DescribeActivity.this, word, Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(DescribeActivity.this, DescribeActivity.class);
+            startActivity(intent);
 
             mButtonSelectImage.setEnabled(true);
         }

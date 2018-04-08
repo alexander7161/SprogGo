@@ -1,5 +1,6 @@
 package com.sproggo.sproggo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (repeatEmail.equals(email) && repeatPassword.equals(password)) {
+                    startActivity(new Intent(CreateAccountActivity.this, MainActivity.class));
                     PlayerList.createAccount(username.getText().toString(), password.getText().toString(), email.getText().toString());
                 }
             }

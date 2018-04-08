@@ -15,7 +15,7 @@ public class Game {
     private static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
     private static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
     private static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
-    private static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baerbar", "telefon", "vand", "stol", "bord", "frugt"))
+    private static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baerbar", "telefon", "vand", "stol", "bord", "frugt"));
     private static int score;
     private static int photosTaken;
     private static int correctPhotosTaken;
@@ -40,6 +40,9 @@ public class Game {
             case "garden":
                 wordsToTest = garden;
                 break;
+            case "Danish Hackathon":
+                wordsToTest = danishHackathon;
+                break;
         }
         randomGenerator = new Random();
         numOfWordsToTest = numOfWords;
@@ -53,6 +56,11 @@ public class Game {
             int rand = randomGenerator.nextInt(wordsToTest.size());
             String wordToReturn = wordsToTest.get(rand);
             wordsToTest.remove(rand);
+            int i = 0;
+            if(danishHackathon.contains(wordToReturn)) {
+                i = danishHackathon.lastIndexOf(wordToReturn);
+                wordToReturn = hackathon.get(i);
+            }
             return wordToReturn;
 
         }
@@ -60,6 +68,10 @@ public class Game {
 
     public static void addScore(List<String> newWords, String word) {
         boolean isCorrect = false;
+        if(danishHackathon.contains(word)) {
+            int i = danishHackathon.lastIndexOf(word);
+            word = hackathon.get(i);
+        }
         List<String> list = newWords.subList(1, 6);
         for(String newWord : list) {
             if(newWord.toLowerCase().contains(word.toLowerCase())) {

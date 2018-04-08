@@ -33,10 +33,10 @@ public class GameResultsActivity extends AppCompatActivity {
         score.setText(Integer.toString(Game.getScore()));
 
         TextView correctWords = (TextView) findViewById(R.id.correct_images);
-        score.setText(Integer.toString(Game.getCorrectPhotosTaken()));
+        correctWords.setText(Integer.toString(Game.getCorrectPhotosTaken()));
 
         TextView totalWords = (TextView) findViewById(R.id.total_images);
-        score.setText(Integer.toString(Game.getPhotosTaken()));
+        totalWords.setText(Integer.toString(Game.getPhotosTaken()));
 
 
         Button button = findViewById(R.id.done_button);

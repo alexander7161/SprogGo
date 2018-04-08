@@ -101,11 +101,15 @@ public class DescribeActivity extends AppCompatActivity {
         this.word = Game.nextWord();
         if(word == null) {
             SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
-            int score = pref.getInt("score", 0);
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("score", score + Game.getScore());
-            editor.commit();
-            Intent intent = new Intent(this, MainActivity.class);
+            try {
+                int score = pref.getInt("score", 0);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("score", score + Game.getScore());
+                editor.commit();
+            } catch (Exception e) {
+
+            }
+            Intent intent = new Intent(this, GameResultsActivity.class);
             startActivity(intent);
         }
         currentWordText.setText(word);

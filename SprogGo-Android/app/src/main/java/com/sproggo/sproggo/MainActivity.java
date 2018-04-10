@@ -1,12 +1,10 @@
 package com.sproggo.sproggo;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -15,20 +13,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Main activity holds fragments of different pages.
+ * @author Alexander Davis
+ */
 public class MainActivity extends AppCompatActivity
         implements MainFragment.OnFragmentInteractionListener, MyListFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener, ChangeLanguageFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener {
 
@@ -48,8 +40,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        if (actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        }
 
         score = (TextView) findViewById(R.id.right_toolbar_text).findViewById(R.id.scoreText);
 
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // Insert the fragment by replacing any existing fragment
+        // Set initial fragment.
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
         setTitle("Start Learning!");
@@ -74,9 +69,7 @@ public class MainActivity extends AppCompatActivity
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-                        // Create a new fragment and specify the fragment to show based on nav item clicked
+                        // Changes displayed fragment based on user choice.
                         Fragment fragment = null;
                         Class fragmentClass;
                         switch(menuItem.getItemId()) {
@@ -96,6 +89,7 @@ public class MainActivity extends AppCompatActivity
                                 fragmentClass = AboutFragment.class;
                                 break;
                             case R.id.log_out_drawer_item:
+                                // End this activity when log out chosen so back button doesn't work.
                                 finish();
                                 SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
 
@@ -134,6 +128,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         score = (TextView) findViewById(R.id.right_toolbar_text).findViewById(R.id.scoreText);
 
+        // Get total score.
         SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
         int scoreInt = pref.getInt("score", 0);
         score.setText(Integer.toString(scoreInt));
@@ -144,13 +139,6 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
-                int score = 0;
-                try {
-                    SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
-                    score = pref.getInt("score", 0);
-                } catch(Exception e) {
-
-                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

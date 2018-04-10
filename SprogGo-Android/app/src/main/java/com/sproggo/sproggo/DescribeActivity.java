@@ -1,35 +1,3 @@
-//
-// Copyright (c) Microsoft. All rights reserved.
-// Licensed under the MIT license.
-//
-// Microsoft Cognitive Services (formerly Project Oxford): https://www.microsoft.com/cognitive-services
-//
-// Microsoft Cognitive Services (formerly Project Oxford) GitHub:
-// https://github.com/Microsoft/Cognitive-Vision-Android
-//
-// Copyright (c) Microsoft Corporation
-// All rights reserved.
-//
-// MIT License:
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
 package com.sproggo.sproggo;
 
 import android.content.Intent;
@@ -40,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,24 +16,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.microsoft.projectoxford.vision.VisionServiceClient;
 import com.microsoft.projectoxford.vision.VisionServiceRestClient;
 import com.microsoft.projectoxford.vision.contract.AnalysisResult;
-import com.microsoft.projectoxford.vision.contract.Category;
-import com.microsoft.projectoxford.vision.contract.Face;
-import com.microsoft.projectoxford.vision.contract.Tag;
-import com.microsoft.projectoxford.vision.contract.Caption;
 import com.microsoft.projectoxford.vision.rest.VisionServiceException;
-
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+/**
+ * Word test instance. Created for each word chosen.
+ */
 public class DescribeActivity extends AppCompatActivity {
 
     // Flag to indicate which task is to be performed.
@@ -91,29 +54,45 @@ public class DescribeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_describe);
 
-        if (client==null){
+        if (client == null) {
             client = new VisionServiceRestClient(getString(R.string.subscription_key), getString(R.string.subscription_apiroot));
         }
 
-        mButtonSelectImage = (Button)findViewById(R.id.buttonSelectImage);
-        mEditText = (EditText)findViewById(R.id.editTextResult);
+        mButtonSelectImage = (Button) findViewById(R.id.buttonSelectImage);
+        mEditText = (EditText) findViewById(R.id.editTextResult);
         TextView currentWordText = (TextView) findViewById(R.id.currentWord);
         this.word = Game.nextWord();
-        if(word == null) {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
-            try {
-                int score = pref.getInt("score", 0);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("score", score + Game.getScore());
-                editor.putInt("scoreNew", Game.getScore());
-                editor.commit();
-            } catch (Exception e) {
-
-            }
-            Intent intent = new Intent(this, GameResultsActivity.class);
-            startActivity(intent);
+        // If no more words, update total score.
+        if (word == null) {
+            endGame();
         }
         currentWordText.setText(word);
+    }
+
+    private void endGame() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("sproggo", 0);
+            int score = pref.getInt("score", 0);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt("score", score + Game.getScore());
+            editor.commit();
+        Intent intent = new Intent(this, GameResultsActivity.class);
+        startActivity(intent);
+    }
+    // Disable back button.
+    @Override
+    public void onBackPressed() {
+    }
+    // Disable back button.
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -144,8 +123,7 @@ public class DescribeActivity extends AppCompatActivity {
 
         try {
             new doRequest().execute();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             mEditText.setText("Error encountered. Exception is: " + e.toString());
         }
     }
@@ -165,7 +143,7 @@ public class DescribeActivity extends AppCompatActivity {
         Log.d("DescribeActivity", "onActivityResult");
         switch (requestCode) {
             case REQUEST_SELECT_IMAGE:
-                if(resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     // If image is selected successfully, set the image URI and bitmap.
                     mImageUri = data.getData();
 
@@ -239,30 +217,11 @@ public class DescribeActivity extends AppCompatActivity {
 
                 Game.addScore(result.description.tags, word);
 
-                mEditText.append("Image format: " + result.metadata.format + "\n");
-                mEditText.append("Image width: " + result.metadata.width + ", height:" + result.metadata.height + "\n");
-                mEditText.append("\n");
+                Intent intent = new Intent(DescribeActivity.this, DescribeActivity.class);
+                startActivity(intent);
 
-                for (Caption caption: result.description.captions) {
-                    mEditText.append("Caption: " + caption.text + ", confidence: " + caption.confidence + "\n");
-                }
-                mEditText.append("\n");
-
-                for (String tag: result.description.tags) {
-                    mEditText.append("Tag: " + tag + "\n");
-                }
-                mEditText.append("\n");
-
-                mEditText.append("\n--- Raw Data ---\n\n");
-                mEditText.append(data);
-                mEditText.setSelection(0);
+                mButtonSelectImage.setEnabled(true);
             }
-            Toast.makeText(DescribeActivity.this, word, Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(DescribeActivity.this, DescribeActivity.class);
-            startActivity(intent);
-
-            mButtonSelectImage.setEnabled(true);
         }
     }
 }

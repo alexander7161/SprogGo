@@ -50,7 +50,6 @@ import java.io.IOException;
 public class SelectImageActivity extends AppCompatActivity {
     // Flag to indicate the request of the next task to be performed
     private static final int REQUEST_TAKE_PHOTO = 0;
-    private static final int REQUEST_SELECT_IMAGE_IN_ALBUM = 1;
 
     // The URI of photo taken from gallery
     private Uri mUriPhotoTaken;
@@ -92,21 +91,6 @@ public class SelectImageActivity extends AppCompatActivity {
                     finish();
                 }
                 break;
-            case REQUEST_SELECT_IMAGE_IN_ALBUM:
-                if (resultCode == RESULT_OK) {
-                    Uri imageUri;
-                    if (data == null || data.getData() == null) {
-                        imageUri = mUriPhotoTaken;
-                    } else {
-                        imageUri = data.getData();
-                    }
-                    Intent intent = new Intent();
-                    intent.setData(imageUri);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
-
-                break;
             default:
                 break;
         }
@@ -139,15 +123,6 @@ public class SelectImageActivity extends AppCompatActivity {
             } catch (IOException e) {
                 setInfo(e.getMessage());
             }
-        }
-    }
-
-    // When the button of "Select a Photo in Album" is pressed.
-    public void selectImageInAlbum(View view) {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("mFilePhotoTaken/*");
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent, REQUEST_SELECT_IMAGE_IN_ALBUM);
         }
     }
 

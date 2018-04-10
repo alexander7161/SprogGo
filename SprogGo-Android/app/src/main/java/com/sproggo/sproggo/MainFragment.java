@@ -26,14 +26,11 @@ import static com.sproggo.sproggo.Game.setUpGame;
  * Activities that contain this fragment must implement the
  * {@link MainFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class MainFragment extends android.support.v4.app.Fragment {
 
+    //Default number selected is 5.
     private int numOfWords = 5;
-
-
 
     private OnFragmentInteractionListener mListener;
 
@@ -41,28 +38,13 @@ public class MainFragment extends android.support.v4.app.Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-
-     * @return A new instance of fragment MainFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
-        MainFragment fragment = new MainFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {// Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        final Button button = (Button) view.findViewById(R.id.button);
+        final Button startGameButton = (Button) view.findViewById(R.id.button);
 
-        // you need to have a list of data that you want the spinner to display
+        // List of items in the spinner.
         final List<String> spinnerArray =  new ArrayList<String>();
         spinnerArray.add("hackathon");
         spinnerArray.add("animal");
@@ -89,24 +71,20 @@ public class MainFragment extends android.support.v4.app.Fragment {
         tenRadio.setOnClickListener(first_radio_listener);
         fithteenRadio.setOnClickListener(first_radio_listener);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        // Start game.
+        startGameButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SharedPreferences pref = getActivity().getSharedPreferences("sproggo", 0);
                 Player currentPlayer = PlayerList.getUser(pref.getString("currentUser", null));
+                // Create game with list of categories and number of words selected by user.
                 Game.setUpGame(spinnerArray.get(sItems.getSelectedItemPosition()), numOfWords);
+                // Start game.
                 Intent intent = new Intent(getActivity(), DescribeActivity.class);
                 MainFragment.this.startActivity(intent);
             }
         });
 
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -127,6 +105,20 @@ public class MainFragment extends android.support.v4.app.Fragment {
     }
 
     /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+
+     * @return A new instance of fragment MainFragment.
+     */
+    public static MainFragment newInstance() {
+        MainFragment fragment = new MainFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
@@ -137,7 +129,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

@@ -16,10 +16,10 @@ public class Game {
     private static int numOfWordsToTest;
 
     // Words for each category.
-    private static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
-    private static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
-    private static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
-    private static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baerbar", "telefon", "vand", "stol", "bord", "frugt"));
+    private final static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
+    private final static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
+    private final static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
+    private final static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baerbar", "telefon", "vand", "stol", "bord", "frugt"));
 
     // Statistics this game.
     private static int score;
@@ -36,20 +36,21 @@ public class Game {
         photosTaken = 0;
         correctPhotosTaken = 0;
         wordsTested = new TreeMap<>();
+        wordsToTest = new ArrayList<>();
 
         // Get words for chosen category.
         switch(categoryName) {
             case "hackathon":
-                wordsToTest = hackathon;
+                wordsToTest.addAll(hackathon);
                 break;
             case "animal":
-                wordsToTest = animal;
+                wordsToTest.addAll(animal);
                 break;
             case "garden":
-                wordsToTest = garden;
+                wordsToTest.addAll(garden);
                 break;
             case "Danish Hackathon":
-                wordsToTest = danishHackathon;
+                wordsToTest.addAll(danishHackathon);
                 break;
         }
         randomGenerator = new Random();
@@ -81,12 +82,11 @@ public class Game {
      */
     public static void addScore(List<String> newWords, String word) {
         // If word is danish replace with english word to test against.
-        if(danishHackathon.contains(word)) {
-            int i = danishHackathon.lastIndexOf(word);
-            word = hackathon.get(i);
-        }
-        List<String> list = newWords.subList(1, 6);
-        for(String newWord : list) {
+            if (danishHackathon.contains(word)) {
+                int i = danishHackathon.lastIndexOf(word);
+                word = hackathon.get(i);
+            }
+        for(String newWord : newWords) {
             // Converts to lowercase in case of irregular input.
             // If correct adds to statistics.
             if(newWord.toLowerCase().contains(word.toLowerCase())) {

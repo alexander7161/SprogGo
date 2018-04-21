@@ -22,11 +22,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
-            android:text="Your Word to find is:"/>
+            android:id="@+id/word_to_find_text"
+            android:text="Your Word to find is:"
+            android:textSize="26sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="50dp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:id="@+id/currentWord"/>
         </LinearLayout>
@@ -41,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="Select Image"
                 android:id="@+id/buttonSelectImage"
-                android:onClick="selectImage"/>
+                android:onClick="selectImage"
+                android:layout_marginBottom="50dp"/>
 
             <ImageView
                 android:id="@+id/selectedImage"
@@ -49,25 +53,11 @@
                 android:layout_height="200dp"
                 android:layout_toRightOf="@+id/image_control"
                 android:layout_toEndOf="@+id/image_control"
-                android:background="#E0E0E0" />
+                android:background="#E0E0E0"
+                android:contentDescription="TODO" />
 
 
 
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="1.03">
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/editTextResult"
-                android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
 

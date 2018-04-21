@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
@@ -36,14 +35,17 @@ public class DescribeActivity extends AppCompatActivity {
     // The button to select an image
     private Button mButtonSelectImage;
 
+    // Text telling user what to do.
+    private TextView wordToFindText;
+
+    // Text which displays current word to find.
+    private TextView currentWordText;
+
     // The URI of the image selected to detect.
     private Uri mImageUri;
 
     // The image selected to detect.
     private Bitmap mBitmap;
-
-    // The edit to show status and result.
-    private EditText mEditText;
 
     private VisionServiceClient client;
 
@@ -59,8 +61,9 @@ public class DescribeActivity extends AppCompatActivity {
         }
 
         mButtonSelectImage = (Button) findViewById(R.id.buttonSelectImage);
-        mEditText = (EditText) findViewById(R.id.editTextResult);
-        TextView currentWordText = (TextView) findViewById(R.id.currentWord);
+        wordToFindText = (TextView) findViewById(R.id.word_to_find_text);
+        currentWordText = (TextView) findViewById(R.id.currentWord);
+        currentWordText.setText("Your Word to find is:");
         this.word = Game.nextWord();
         // If no more words, update total score.
         if (word == null) {
@@ -119,18 +122,18 @@ public class DescribeActivity extends AppCompatActivity {
 
     public void doDescribe() {
         mButtonSelectImage.setEnabled(false);
-        mEditText.setText("Analysing...");
+        wordToFindText.setText("Please wait:");
+        currentWordText.setText("Analysing...");
 
         try {
             new doRequest().execute();
         } catch (Exception e) {
-            mEditText.setText("Error encountered. Exception is: " + e.toString());
+            Log.d("Error", e.toString());
         }
     }
 
     // Called when the "Select Image" button is clicked.
     public void selectImage(View view) {
-        mEditText.setText("");
 
         Intent intent;
         intent = new Intent(DescribeActivity.this, SelectImageActivity.class);
@@ -207,9 +210,8 @@ public class DescribeActivity extends AppCompatActivity {
             super.onPostExecute(data);
             // Display based on error existence
 
-            mEditText.setText("");
             if (e != null) {
-                mEditText.setText("Error: " + e.getMessage());
+                Log.d("Error", e.getMessage());
                 this.e = null;
             } else {
                 Gson gson = new Gson();

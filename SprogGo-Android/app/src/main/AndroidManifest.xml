@@ -28,12 +28,12 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".DescribeActivity" />
         <activity android:name=".SelectImageActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity android:name=".CreateAccountActivity" />
         <activity
             android:name=".ChooseLanguageActivity"
@@ -46,7 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameResultsActivity"></activity>
+        <activity android:name=".GameResultsActivity" />
     </application>
 
 </manifest>

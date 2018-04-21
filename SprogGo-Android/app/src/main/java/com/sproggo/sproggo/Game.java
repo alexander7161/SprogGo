@@ -16,10 +16,10 @@ public class Game {
     private static int numOfWordsToTest;
 
     // Words for each category.
-    private final static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "water", "chair", "table", "fruit"));
+    private final static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "bottle", "chair", "table", "fruit", "window", "pen", "wire", "screen", "car", "door", "bowl", "person", "glass"));
+    private final static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baebar", "telefon", "flaske", "stol", "bord", "frugt", "vindue", "pen", "trad", "skaerm", "bil", "dør", "skal", "person", "glas"));
     private final static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
     private final static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
-    private final static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baerbar", "telefon", "vand", "stol", "bord", "frugt"));
 
     // Statistics this game.
     private static int score;

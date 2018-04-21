@@ -11,24 +11,28 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:gravity="center"
         android:weightSum="1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="50dp"
             android:text="Your Word to find is:"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="50dp"
+                android:textStyle="bold"
                 android:id="@+id/currentWord"/>
         </LinearLayout>
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -46,6 +50,8 @@
                 android:layout_toRightOf="@+id/image_control"
                 android:layout_toEndOf="@+id/image_control"
                 android:background="#E0E0E0" />
+
+
 
         </LinearLayout>
         <LinearLayout

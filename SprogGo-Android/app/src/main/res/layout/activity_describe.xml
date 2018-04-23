@@ -56,7 +56,12 @@
                 android:background="#E0E0E0"
                 android:contentDescription="TODO" />
 
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit Game"
+                android:id="@+id/button_exit"
+                android:onClick="exitGame" />
 
         </LinearLayout>
     </LinearLayout>

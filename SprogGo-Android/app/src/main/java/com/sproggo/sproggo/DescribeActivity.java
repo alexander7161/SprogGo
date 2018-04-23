@@ -16,10 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
-import com.microsoft.projectoxford.vision.VisionServiceClient;
 import com.microsoft.projectoxford.vision.VisionServiceRestClient;
 import com.microsoft.projectoxford.vision.contract.AnalysisResult;
 import com.microsoft.projectoxford.vision.rest.VisionServiceException;
+import com.microsoft.projectoxford.vision.VisionServiceClient;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -50,6 +51,8 @@ public class DescribeActivity extends AppCompatActivity {
     private VisionServiceClient client;
 
     private String word;
+
+    private AsyncTask aDoRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +129,7 @@ public class DescribeActivity extends AppCompatActivity {
         currentWordText.setText("Analysing...");
 
         try {
-            new doRequest().execute();
+            aDoRequest = new doRequest().execute();
         } catch (Exception e) {
             Log.d("Error", e.toString());
         }
@@ -185,6 +188,14 @@ public class DescribeActivity extends AppCompatActivity {
         Log.d("result", result);
 
         return result;
+    }
+
+    public void exitGame(View view) {
+        if(aDoRequest!=null) {
+            aDoRequest.cancel(true);
+        }
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private class doRequest extends AsyncTask<String, String, String> {

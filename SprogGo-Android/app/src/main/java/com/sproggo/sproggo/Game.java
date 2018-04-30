@@ -16,8 +16,8 @@ public class Game {
     private static int numOfWordsToTest;
 
     // Words for each category.
-    private final static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "bottle", "chair", "table", "fruit", "window", "pen", "wire", "screen", "car", "door", "bowl", "person", "glass"));
-    private final static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baebar", "telefon", "flaske", "stol", "bord", "frugt", "vindue", "pen", "trad", "skaerm", "bil", "dør", "skal", "person", "glas"));
+    private final static List<String> hackathon = new LinkedList<String>(Arrays.asList("laptop", "phone", "bottle", "chair", "table", "fruit", "window", "screen", "car", "door", "bowl", "glass", "pencil", "mug", "glasses"));
+    private final static List<String> danishHackathon = new LinkedList<String>(Arrays.asList("baebar", "telefon", "flaske", "stol", "bord", "frugt", "vindue", "skaerm", "bil", "dør", "skal", "glas", "bryant", "krus", "briller"));
     private final static List<String> animal = new LinkedList<String>(Arrays.asList("dog", "cat", "pig", "sheep", "cow", "horse", "spider", "hippopotamus", "elephant"));
     private final static List<String> garden = new LinkedList<String>(Arrays.asList("flower", "tree", "grass"));
 

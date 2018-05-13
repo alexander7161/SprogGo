@@ -11,6 +11,8 @@ The name SprogGo is derived from two words, ‘sprog’, the Danish for language
 
 The app prompts the user with a word in the language they are learning. Then it uses the Microsoft Computer Vision API to identify objects in photos taken with the camera. The user gains points for taking a photo of the correct object.
 
+Created at Copenhacks 2018 in Copenhagen.
+
 ## Welcome Screen
 <img src="https://github.com/alexander7161/SprogGo/blob/master/Screenshots/welcomeScreen.png" width="50%"></img>
 ## Main Activity
